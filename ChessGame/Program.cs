@@ -7,9 +7,10 @@ namespace ChessGame
     {
         static void Main(string[] args)
         {
-            Posicao a = new Posicao(2, 3);
+            TabuleiroGame tab = new TabuleiroGame(8, 8);
 
-            Console.WriteLine(a);
+
+            Console.WriteLine("aceito");
         }
     }
 }
