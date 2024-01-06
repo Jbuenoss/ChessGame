@@ -1,4 +1,6 @@
-﻿namespace Tabuleiro
+﻿using System.Xml;
+
+namespace Tabuleiro
 {
     internal class TabuleiroGame
     {
@@ -13,5 +15,9 @@
             Pecas = new Peca[linhas, colunas];
         }
 
+        public Peca peca(int linha, int coluna)
+        {
+            return Pecas[linha, coluna];
+        }
     }
 }
