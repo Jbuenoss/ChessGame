@@ -7,11 +7,14 @@ namespace ChessGame
     {
         static void Main(string[] args)
         {
-            PosicaoXadrez a1 = new PosicaoXadrez('a', 1);
+            TabuleiroGame tab = new TabuleiroGame(8, 8);
 
-            Console.WriteLine(a1);
-            Console.WriteLine(a1.ToPosicao());
+            tab.ColocarPeca(new Rei(tab, Cor.Branca), new Posicao(2, 3));
+            tab.ColocarPeca(new Rei(tab, Cor.Branca), new Posicao(0, 7));
+            tab.ColocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 3));
+            tab.ColocarPeca(new Torre(tab, Cor.Preta), new Posicao(6, 1));
 
+            Tela.ImprimirTab(tab);
         }
     }
 }
