@@ -12,22 +12,35 @@ namespace ChessGame
                 PartidaDeXadrez partidaDeXadrez = new PartidaDeXadrez();
                 while (!partidaDeXadrez.Terminada)
                 {
-                    Console.Clear();
-                    Tela.ImprimirTab(partidaDeXadrez.Tab);
+                    try
+                    {
+                        Console.Clear();
+                        Tela.ImprimirTab(partidaDeXadrez.Tab);
+
+                        Console.WriteLine("\nTurno: " + partidaDeXadrez.Turno);
+                        Console.WriteLine("Aguardando jogada: " + partidaDeXadrez.JogadorAtual);
 
 
-                    Console.Write("\nOrigem: ");
-                    Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
+                        Console.Write("\nOrigem: ");
+                        Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
+                        partidaDeXadrez.ValidarPosicaoDeOrigem(origem);
 
-                    bool[,] posicoePossiveis = partidaDeXadrez.Tab.peca(origem).MovimentosPossiveis();
+                        bool[,] posicoePossiveis = partidaDeXadrez.Tab.peca(origem).MovimentosPossiveis();
 
-                    Console.Clear();
-                    Tela.ImprimirTab(partidaDeXadrez.Tab, posicoePossiveis);
+                        Console.Clear();
+                        Tela.ImprimirTab(partidaDeXadrez.Tab, posicoePossiveis);
 
-                    Console.Write("\nDestino: ");
-                    Posicao Destino = Tela.LerPosicaoXadrez().ToPosicao();
+                        Console.Write("\nDestino: ");
+                        Posicao Destino = Tela.LerPosicaoXadrez().ToPosicao();
+                        partidaDeXadrez.ValidarPosicaoDeDestino(origem, Destino);
 
-                    partidaDeXadrez.ExecutaMovimento(origem, Destino);
+                        partidaDeXadrez.RealizaJogada(origem, Destino);
+                    }
+                    catch(TabuleiroException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
                 }
                 
             } 
