@@ -68,8 +68,16 @@ namespace Xadrez
             {
                 Xeque = false;
             }
-            Turno++;
-            MudaJogador();
+            if (TesteXequemate(Adversario(JogadorAtual)))
+            {
+                Terminada = true;
+            }
+            else
+            {
+                Turno++;
+                MudaJogador();
+            }
+            
         }
         public void ValidarPosicaoDeOrigem(Posicao pos)
         {
@@ -173,6 +181,37 @@ namespace Xadrez
             return false;
         }
 
+        public bool TesteXequemate(Cor cor)
+        {
+            if(!EstaEmXeque(cor))
+            {
+                return false;
+            }
+            foreach(Peca x in PecasEmJogo(cor))
+            {
+                bool[,] mat = x.MovimentosPossiveis();
+                for(int i = 0; i < Tab.Linhas; i++)
+                {
+                    for(int j = 0; j < Tab.Colunas; j++)
+                    {
+                        if (mat[i, j])
+                        {
+                            Posicao origem = x.posicao;
+                            Posicao destino = new Posicao(i, j);
+                            Peca pecaCapturada = ExecutaMovimento(origem, destino);
+                            bool TesteXeque = EstaEmXeque(cor);
+                            DesfazMovimento(origem, destino, pecaCapturada);
+                            if(!TesteXeque)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
         public void ColocarNovaPeca(char coluna,  int linha,  Peca peca)
         {
             Tab.ColocarPeca(peca, new PosicaoXadrez(coluna, linha).ToPosicao());
@@ -182,8 +221,9 @@ namespace Xadrez
         {
             ColocarNovaPeca('b', 1, new Rei(Tab, Cor.Branca));
             ColocarNovaPeca('g', 8, new Rei(Tab, Cor.Preta));
-            ColocarNovaPeca('c', 1, new Torre(Tab, Cor.Branca));
+            ColocarNovaPeca('c', 2, new Torre(Tab, Cor.Preta));
             ColocarNovaPeca('f', 8, new Torre(Tab, Cor.Preta));
         }
+
     }
 }

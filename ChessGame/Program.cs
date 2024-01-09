@@ -40,7 +40,8 @@ namespace ChessGame
                         Console.ReadLine();
                     }
                 }
-                
+                Console.Clear();
+                Tela.ImprimirPartida(partidaDeXadrez);
             } 
             catch(Exception ex)
             {

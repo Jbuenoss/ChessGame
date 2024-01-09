@@ -11,10 +11,17 @@ namespace ChessGame
             Console.WriteLine();
             ImprimirPecasCapturadas(partidaDeXadrez);
             Console.WriteLine("\nTurno: " + partidaDeXadrez.Turno);
-            Console.WriteLine("Aguardando jogada: " + partidaDeXadrez.JogadorAtual);
-            if (partidaDeXadrez.Xeque)
+            if(!partidaDeXadrez.Terminada){
+                Console.WriteLine("Aguardando jogada: " + partidaDeXadrez.JogadorAtual);
+                if (partidaDeXadrez.Xeque)
+                {
+                    Console.WriteLine("Xeque!");
+                }
+            }
+            else
             {
-                Console.WriteLine("Xeque!");
+                Console.WriteLine("XEQUEMATE!");
+                Console.WriteLine("Vencedor: " + partidaDeXadrez.JogadorAtual);
             }
 
         }
@@ -78,7 +85,7 @@ namespace ChessGame
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("  A B C D E F G H");
+            Console.WriteLine("  a b c d e f g h");
             Console.BackgroundColor = fundoOriginal;
 
         }
