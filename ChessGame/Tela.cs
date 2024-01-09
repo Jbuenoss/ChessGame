@@ -5,6 +5,38 @@ namespace ChessGame
 {
     internal class Tela
     {
+        public static void ImprimirPartida(PartidaDeXadrez partidaDeXadrez)
+        {
+            ImprimirTab(partidaDeXadrez.Tab);
+            Console.WriteLine();
+            ImprimirPecasCapturadas(partidaDeXadrez);
+            Console.WriteLine("\nTurno: " + partidaDeXadrez.Turno);
+            Console.WriteLine("Aguardando jogada: " + partidaDeXadrez.JogadorAtual);
+        }
+
+        public static void ImprimirPecasCapturadas(PartidaDeXadrez partidaDeXadrez)
+        {
+            Console.WriteLine("Pecas capturadas: ");
+            Console.Write("Brancas: ");
+            ImprimirConjunto(partidaDeXadrez.PecasCapturadas(Cor.Branca));
+            Console.Write("\nPretas: ");
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            ImprimirConjunto(partidaDeXadrez.PecasCapturadas(Cor.Preta));
+            Console.ForegroundColor = aux;
+            Console.WriteLine();
+
+        }
+
+        public static void ImprimirConjunto(HashSet<Peca> conjunto)
+        {
+            Console.Write("[");
+            foreach(Peca p in conjunto)
+            {
+                Console.Write(p + " ");
+            }
+            Console.Write("]");
+        }
         public static void ImprimirTab(TabuleiroGame tab)
         {
             for(int i = 0; i < tab.Linhas; i++)

@@ -1,6 +1,7 @@
 ﻿using Xadrez;
 using Tabuleiro;
 
+
 namespace ChessGame 
 {
     internal class Program
@@ -15,10 +16,7 @@ namespace ChessGame
                     try
                     {
                         Console.Clear();
-                        Tela.ImprimirTab(partidaDeXadrez.Tab);
-
-                        Console.WriteLine("\nTurno: " + partidaDeXadrez.Turno);
-                        Console.WriteLine("Aguardando jogada: " + partidaDeXadrez.JogadorAtual);
+                        Tela.ImprimirPartida(partidaDeXadrez);
 
 
                         Console.Write("\nOrigem: ");
