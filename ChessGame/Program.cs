@@ -31,7 +31,6 @@ namespace ChessGame
                         Console.Write("\nDestino: ");
                         Posicao Destino = Tela.LerPosicaoXadrez().ToPosicao();
                         partidaDeXadrez.ValidarPosicaoDeDestino(origem, Destino);
-
                         partidaDeXadrez.RealizaJogada(origem, Destino);
                     }
                     catch(TabuleiroException e)

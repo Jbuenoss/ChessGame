@@ -13,7 +13,7 @@
 
         public void DefinirValores(int linha, int coluna)
         {
-            Linha = linha;
+            this.Linha = linha;
             Coluna = coluna;
         }
 
